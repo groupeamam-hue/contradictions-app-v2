@@ -266,22 +266,22 @@ def display_youtube_video(video_config, lang):
         </a>
         """, unsafe_allow_html=True)
 
-# Fonction pour la section vidéo
+# Fonction pour la section vidéo CORRIGÉE
 def display_video_section(t, lang):
     st.markdown(f"### {t['video_title']}")
     st.markdown(t['video_description'])
     
     st.markdown("---")
     
-    # Vidéo française
-    display_youtube_video(YOUTUBE_CONFIG["french"], lang)
+    # Afficher seulement la vidéo française si langue = fr
+    if lang == "fr":
+        display_youtube_video(YOUTUBE_CONFIG["french"], lang)
+        st.markdown("---")
     
-    st.markdown("---")
-    
-    # Vidéo arabe
-    display_youtube_video(YOUTUBE_CONFIG["arabic"], lang)
-    
-    st.markdown("---")
+    # Afficher seulement la vidéo arabe si langue = ar
+    if lang == "ar":
+        display_youtube_video(YOUTUBE_CONFIG["arabic"], lang)
+        st.markdown("---")
     
     # Informations supplémentaires
     if lang == "fr":

@@ -43,5 +43,23 @@ GitHub : [`groupeam-hue`](https://github.com/groupeam-hue)
 ## 🏷️ Mots-clés GitHub recommandés
 `streamlit`, `python`, `coran`, `boukhari`, `hadith`, `religion`, `education`, `quiz`, `text-analysis`, `multilingual`, `critical-thinking`, `islamic-studies`, `video-integration`, `automation`, `portable-app`, `pyinstaller`, `user-guide`, `custom-css`, `dark-theme`
 
+## 🔖 Mots-clés thématiques pour le référencement
+
+Ce projet est indexé avec des mots-clés multilingues pour améliorer sa visibilité sur GitHub et les moteurs de recherche.
+
+**🇫🇷 Français :**  
+`Contradictions Coran-Hadith`, `Authenticité des hadiths`, `Hadiths douteux`, `Vérification des sources islamiques`, `Analyse critique du hadith`,  
+`Coran et valeurs universelles`, `Déviation du message coranique`, `Hadiths problématiques`, `Étude comparative Coran-Hadith`, `Réforme de la pensée islamique`,  
+`Sens et interprétation du Coran`, `Conflit entre tradition et révélation`, `Hadiths et éthique`, `Clarification du message divin`, `Retour au Coran`,  
+`Purification du hadith`, `Al-Boukhari et contradictions`, `Véracité des récits prophétiques`, `Conformité au Coran`, `Vérité islamique et discernement`
+
+**🇸🇦 العربية :**  
+`التناقض بين القرآن والحديث`, `الأحاديث المشكوك فيها`, `نقد الحديث`, `تحليل الأحاديث النبوية`, `التحقق من صحة الأحاديث`,  
+`القيم القرآنية`, `الانحراف عن رسالة القرآن`, `أحاديث متعارضة`, `دراسة مقارنة بين القرآن والحديث`, `إصلاح الفكر الإسلامي`,  
+`تفسير القرآن ومعناه`, `الصراع بين الوحي والتراث`, `الأحاديث والأخلاق`, `توضيح الرسالة الإلهية`, `العودة إلى القرآن`,  
+`تنقية السنة النبوية`, `البخاري والتناقضات`, `صدق الروايات النبوية`, `مطابقة الحديث للقرآن`, `التمييز بين الحق والباطل`
+
+📂 Voir la [liste complète des mots-clés](docs/github_topics.md)
+
 ## 📄 Licence
 Ce projet est open-source. Vous pouvez le réutiliser, le modifier ou le partager librement à des fins éducatives et de réflexion.

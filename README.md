@@ -1,8 +1,10 @@
 # 📘 Contradictions Coran-Boukhari – Version 2
 
+🌐 Site vitrine : [https://groupeamam-hue.github.io/contradictions-app-v2/](https://groupeamam-hue.github.io/contradictions-app-v2/)
+
 **Le Coran dit une chose... Boukhari dit le contraire. À qui tu crois ?**
 
-Cette application Streamlit invite à une réflexion critique sur les sources islamiques en comparant les versets du Coran avec les hadiths de Sahih al-Bukhari. Elle propose une interface interactive, multilingue et éducative, destinée à stimuler la pensée critique et la compréhension spirituelle.
+Cette application Streamlit invite à une réflexion critique sur les sources islamiques en comparant les versets du Coran avec les hadiths de Sahih al-Boukhari. Elle propose une interface interactive, multilingue et éducative, destinée à stimuler la pensée critique et la compréhension spirituelle.
 
 ---
 
@@ -14,7 +16,7 @@ Cette application Streamlit invite à une réflexion critique sur les sources is
 
 ## 🖼️ Aperçu de l'application
 
-![Capture d’écran](capture%20%C3%A9cran%20upload%20du%208%20nov.png)
+![Capture d’écran](capture%20%C3%A9cran%20application%20du%208%20nov.png)
 
 ---
 
@@ -50,14 +52,16 @@ Cette application Streamlit invite à une réflexion critique sur les sources is
 - `requirements.txt` : Liste des dépendances nécessaires  
 - `README.md` : Présentation du projet  
 - `github_topics.md` : Mots-clés thématiques pour le SEO  
-- `capture écran upload du 8 nov.png` : Aperçu visuel  
+- `index.html` : Page vitrine pour GitHub Pages  
+- `capture écran application du 8 nov.png` : Aperçu visuel  
+- `setup.py` : Script d’installation (optionnel)
 
 ---
 
 ## 👤 Auteur
 
 Développée par **Moulay**  
-GitHub : [`groupeam-hue`](https://github.com/groupeam-hue)
+GitHub : [`groupeamam-hue`](https://github.com/groupeamam-hue)
 
 ---
 

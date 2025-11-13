@@ -1,3 +1,5 @@
+# contradictions_app.py - APPLICATION COMPLÈTE AVEC FONCTIONNALITÉS PORTABLES
+
 import streamlit as st
 import json
 import random
@@ -5,16 +7,41 @@ import time
 import pandas as pd
 import base64
 import os
+import sys
 from pathlib import Path
+import socket
 
-# Configuration de la page
+# =============================================
+# FONCTION POUR PORTS AUTOMATIQUES (NOUVEAU)
+# =============================================
+
+def find_available_port(start_port=8501):
+    """Trouve un port disponible automatiquement"""
+    port = start_port
+    max_port = start_port + 100
+    while port <= max_port:
+        try:
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                s.bind(('localhost', port))
+                return port
+        except OSError:
+            port += 1
+    return start_port  # Retourne le port par défaut si aucun trouvé
+
+# =============================================
+# CONFIGURATION DE LA PAGE
+# =============================================
+
 st.set_page_config(
     page_title="Contradictions Coran-Boukhari",
     page_icon="📖",
     layout="wide"
 )
 
-# Traductions complètes
+# =============================================
+# TRADUCTIONS COMPLÈTES
+# =============================================
+
 translations = {
     "fr": {
         "title": "📖 Contradictions Coran-Boukhari",
@@ -64,7 +91,9 @@ translations = {
         "french_video": "🇫🇷 Vidéo en Français",
         "arabic_video": "🇸🇦 Vidéo en Arabe",
         "watch_video": "🎬 Regarder la vidéo",
-        "direct_link": "🔗 Lien direct YouTube"
+        "direct_link": "🔗 Lien direct YouTube",
+        "portable_feature": "🚀 Version Portable",
+        "portable_description": "Cette application peut fonctionner sans installation - version .exe disponible"
     },
     "ar": {
         "title": "📖 التناقضات بين القرآن والبخاري",
@@ -114,11 +143,16 @@ translations = {
         "french_video": "🇫🇷 فيديو بالفرنسية",
         "arabic_video": "🇸🇦 فيديو بالعربية",
         "watch_video": "🎬 مشاهدة الفيديو",
-        "direct_link": "🔗 رابط مباشر على يوتيوب"
+        "direct_link": "🔗 رابط مباشر على يوتيوب",
+        "portable_feature": "🚀 نسخة محمولة",
+        "portable_description": "هذا التطبيق يمكن أن يعمل بدون تثبيت - نسخة .exe متاحة"
     }
 }
 
-# Configuration des vidéos YouTube
+# =============================================
+# CONFIGURATION DES VIDÉOS YOUTUBE
+# =============================================
+
 YOUTUBE_CONFIG = {
     "french": {
         "title_fr": "🎥 Vidéo en Français - Explication des Contradictions",
@@ -140,7 +174,10 @@ YOUTUBE_CONFIG = {
     }
 }
 
-# Données des hadiths faibles
+# =============================================
+# DONNÉES DES HADITHS FAIBLES
+# =============================================
+
 weak_hadiths_data = {
     "1. Prophète - Exagérations": [
         {
@@ -160,7 +197,10 @@ weak_hadiths_data = {
     ]
 }
 
-# Données des contradictions (version simplifiée pour l'exemple)
+# =============================================
+# DONNÉES DES CONTRADICTIONS
+# =============================================
+
 contradictions_data = {
     "fr": {
         "RELIGION ET LIBERTÉ": [
@@ -177,6 +217,14 @@ contradictions_data = {
                 "boukhari": "« Le Prophète a dit: 'Je n'ai laissé après moi aucune tentation plus nuisible pour les hommes que les femmes.' » (Sahih al-Bukhari 5096)",
                 "coran": "« Et parmi Ses signes Il a créé de vous, pour vous, des épouses pour que vous viviez en tranquillité avec elles et Il a mis entre vous de l'affection et de la bonté. » (Sourate 30, Verset 21)",
                 "choc": "Le Coran valorise les femmes comme source de tranquillité, Boukhari les présente comme une tentation nuisible"
+            }
+        ],
+        "SCIENCE ET RAISON": [
+            {
+                "titre": "Approche scientifique",
+                "boukhari": "« Le Prophète a dit: 'La fièvre provient de la chaleur de l'Enfer.' » (Sahih al-Bukhari 3263)",
+                "coran": "« En vérité, dans la création des cieux et de la terre, et dans l'alternance de la nuit et du jour, il y a des signes pour les doués d'intelligence. » (Sourate 3, Verset 190)",
+                "choc": "Le Coran encourage la réflexion scientifique, Boukhari donne des explications non scientifiques"
             }
         ]
     },
@@ -196,11 +244,22 @@ contradictions_data = {
                 "coran": "ومن آياته أن خلق لكم من أنفسكم أزواجاً لتسكنوا إليها وجعل بينكم مودة ورحمة (سورة الروم، الآية 21)",
                 "choc": "القرآن يقدر النساء كمصدر للسكن، البخاري يقدمهن كفتنة مضرة"
             }
+        ],
+        "العلم والعقل": [
+            {
+                "titre": "المنهج العلمي",
+                "boukhari": "قال النبي: 'الحمى من فيح جهنم' (صحيح البخاري 3263)",
+                "coran": "إن في خلق السماوات والأرض واختلاف الليل والنهار لآيات لأولي الألباب (سورة آل عمران، الآية 190)",
+                "choc": "القرآن يشجع التفكير العلمي، البخاري يقدم تفسيرات غير علمية"
+            }
         ]
     }
 }
 
-# CSS personnalisé
+# =============================================
+# CSS PERSONNALISÉ
+# =============================================
+
 st.markdown("""
 <style>
     .stInfo, .stSuccess, .stWarning, .stError { 
@@ -227,10 +286,14 @@ st.markdown("""
     .download-btn { background-color: #4CAF50; color: white; padding: 12px 24px; text-align: center; text-decoration: none; display: inline-block; border-radius: 5px; font-weight: bold; margin: 10px 0; border: none; cursor: pointer; }
     .download-btn:hover { background-color: #45a049; }
     .video-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: 15px; margin: 15px 0; border: 2px solid #4A5568; }
+    .portable-feature { background: linear-gradient(135deg, #FF8C00 0%, #FF4500 100%); padding: 15px; border-radius: 10px; margin: 10px 0; border: 2px solid #FF6347; }
 </style>
 """, unsafe_allow_html=True)
 
-# Fonction pour afficher une vidéo YouTube
+# =============================================
+# FONCTIONS UTILITAIRES
+# =============================================
+
 def display_youtube_video(video_config, lang):
     """Affiche une vidéo YouTube avec son lecteur intégré"""
     st.markdown(f"""
@@ -266,7 +329,6 @@ def display_youtube_video(video_config, lang):
         </a>
         """, unsafe_allow_html=True)
 
-# Fonction pour la section vidéo CORRIGÉE
 def display_video_section(t, lang):
     st.markdown(f"### {t['video_title']}")
     st.markdown(t['video_description'])
@@ -305,7 +367,6 @@ def display_video_section(t, lang):
         - ✅ إمكانية المشاهدة بدون اتصال (عبر تطبيق يوتيوب)
         """)
 
-# Fonction guide utilisateur
 def user_guide(t, lang):
     st.sidebar.markdown("---")
     st.sidebar.subheader("📖 Guide Utilisateur" if lang == "fr" else "📖 دليل المستخدم")
@@ -327,6 +388,7 @@ def user_guide(t, lang):
             - Quiz interactif
             - Vidéos YouTube intégrées
             - Lecture fluide
+            - Version portable (.exe)
             """)
         else:
             st.markdown("""
@@ -344,28 +406,52 @@ def user_guide(t, lang):
             - اختبار تفاعلي
             - فيديوهات يوتيوب مدمجة
             - تشغيل سلس
+            - نسخة محمولة (.exe)
             """)
 
-# Fonction version hors ligne
 def create_executable_version(t, lang):
     st.sidebar.markdown("---")
-    st.sidebar.subheader("📦 Version Hors Ligne" if lang == "fr" else "📦 نسخة غير متصلة")
+    st.sidebar.subheader("📦 Version Portable" if lang == "fr" else "📦 نسخة محمولة")
     
-    if st.sidebar.button("🚀 Créer version exe" if lang == "fr" else "🚀 إنشاء نسخة exe"):
+    with st.sidebar.expander("🚀 Créer version .exe" if lang == "fr" else "🚀 إنشاء نسخة .exe"):
         if lang == "fr":
-            st.sidebar.info("""
-            **Pour créer .exe :**
-            1. Installer: `pip install pyinstaller`
-            2. Exécuter: `pyinstaller --onefile --name "Contradictions_App" app.py`
-            3. Le .exe sera dans 'dist/'
+            st.markdown("""
+            **Pour créer le .exe :**
+            
+            ```bash
+            pip install pyinstaller
+            pyinstaller --onefile --name "ContradictionsApp" contradictions_app.py
+            ```
+            
+            **Le .exe sera créé dans le dossier 'dist/'**
+            
+            **Fonctionnalités portables :**
+            - ✅ Lancement automatique
+            - ✅ Ports automatiques
+            - ✅ Interface complète
+            - ✅ Sans installation
             """)
         else:
-            st.sidebar.info("""
-            **لإنشاء .exe:**
-            1. التنصيب: `pip install pyinstaller`
-            2. التشغيل: `pyinstaller --onefile --name "Contradictions_App" app.py`
-            3. سيكون الملف في 'dist/'
+            st.markdown("""
+            **لإنشاء ملف .exe:**
+            
+            ```bash
+            pip install pyinstaller
+            pyinstaller --onefile --name "ContradictionsApp" contradictions_app.py
+            ```
+            
+            **سيتم إنشاء الملف في مجلد 'dist/'**
+            
+            **ميزات النسخة المحمولة:**
+            - ✅ تشغيل تلقائي
+            - ✅ منافذ تلقائية
+            - ✅ واجهة كاملة
+            - ✅ بدون تثبيت
             """)
+
+# =============================================
+# INTERFACE PRINCIPALE
+# =============================================
 
 # Menu sidebar
 st.sidebar.title("🎯 Navigation")
@@ -378,7 +464,7 @@ theme_names = list(contradictions_par_themes.keys())
 
 menu_option = st.sidebar.radio(t["navigation"], t["menu_options"])
 
-# Fonctions de navigation
+# Gestion de l'état de session
 if 'current_index' not in st.session_state:
     st.session_state.current_index = 0
 if 'quiz_active' not in st.session_state:
@@ -419,9 +505,21 @@ st.title(t["title"])
 st.subheader(t["subtitle"])
 st.markdown(t["cta"])
 
+# Nouvelle fonctionnalité : Version portable
+st.markdown(f"""
+<div class="portable-feature">
+    <h4>🚀 {t['portable_feature']}</h4>
+    <p>{t['portable_description']}</p>
+</div>
+""", unsafe_allow_html=True)
+
 # Appliquer la direction du texte selon la langue
 text_direction = "arabic-text" if lang == "ar" else "french-text"
 st.markdown(f'<div class="{text_direction}">', unsafe_allow_html=True)
+
+# =============================================
+# SECTIONS DE L'APPLICATION
+# =============================================
 
 # ACCUEIL
 if menu_option == t["menu_options"][0]:
@@ -646,7 +744,10 @@ elif menu_option == t["menu_options"][5]:
 # Fermer la div de direction de texte
 st.markdown('</div>', unsafe_allow_html=True)
 
-# Ajouter les fonctionnalités utilisateur
+# =============================================
+# FONCTIONNALITÉS UTILISATEUR
+# =============================================
+
 user_guide(t, lang)
 create_executable_version(t, lang)
 
@@ -688,3 +789,28 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
+# =============================================
+# LANCEMENT PORTABLE (NOUVEAU)
+# =============================================
+
+if __name__ == "__main__":
+    # Cette partie s'exécute seulement quand le script est lancé directement
+    # et non quand il est importé comme module
+    
+    # Afficher des informations de débogage
+    import subprocess
+    import sys
+    
+    # Trouver un port disponible
+    port = find_available_port(8501)
+    
+    st.sidebar.markdown("---")
+    st.sidebar.info(f"**🌐 Port utilisé:** {port}")
+    st.sidebar.info(f"**🚀 Mode:** {'Portable' if hasattr(sys, '_MEIPASS') else 'Développement'}")
+    
+    # Si nous sommes dans un exe PyInstaller
+    if hasattr(sys, '_MEIPASS'):
+        st.sidebar.success("✅ **Application portable active**")
+    else:
+        st.sidebar.warning("🛠️ **Mode développement**")

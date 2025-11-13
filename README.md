@@ -16,7 +16,7 @@ Cette application Streamlit invite à une réflexion critique sur les sources is
 
 ## 🖼️ Aperçu de l'application
 
-![Capture d’écran](capture%20%C3%A9cran%20application%20du%208%20nov.png)
+![Capture d’écran](capture_ecran_app_8_nov.png)
 
 ---
 

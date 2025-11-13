@@ -16,7 +16,7 @@ Cette application Streamlit invite à une réflexion critique sur les sources is
 
 ## 🖼️ Aperçu de l'application
 
-![Capture d’écran](capture%20%C3%A9cran%20application%20du%208%20nov.png)
+![Capture d’écran](capture_ecran_app_8_nov.png)
 
 ---
 
@@ -62,7 +62,7 @@ Cette application Streamlit invite à une réflexion critique sur les sources is
 
 Développée par **Moulay**  
 GitHub : [`groupeamam-hue`](https://github.com/groupeamam-hue)
-
+🔧 Code source : [github.com/groupeamam-hue/contradictions-app-v2](https://github.com/groupeamam-hue/contradictions-app-v2)
 ---
 
 ## 🏷️ Mots-clés thématiques pour le référencement
@@ -87,5 +87,6 @@ Ce projet est indexé avec des mots-clés multilingues pour améliorer sa visibi
 ---
 
 ## 📄 Licence
-
+Ce projet est distribué sous la licence MIT.  
+📜 Voir le fichier [LICENSE](LICENSE) pour plus de détails.
 Ce projet est open-source. Vous pouvez le réutiliser, le modifier ou le partager librement à des fins éducatives et de réflexion.
